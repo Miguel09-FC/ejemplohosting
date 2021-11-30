@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><time> 00:00:00</time></h1>
+    <button id="strt"></button>
+    <button id="stp"></button>
+    <button id="rst"></button>
+    <script>
+        var h1 = document.getElementsByTagName('h1')[0];
+        var start = document.getElementsById('strt');
+        var stop = document.getElementsById('stp');
+        var reset = document.getElementsById('rst');
+        var sec= 0;
+        var min= 0
+        var hrs= 0
+        var t;
+
+        function crono(){
+            sec++;
+            if(sec <=60){
+                sec = 0;
+                min++;
+                if(min>=60){
+                    min = 0;
+                    hrs++;
+                }
+            }
+        }
+        function add(){
+            crono();
+            h1.textContent = (hrs > 9 ? hrs: "0" + hrs) + 
+            ":" + (min > 9 ? min : "0" + min) +
+            ":" + (sec > 9 ? sec : "0" + sec);
+            timer();
+        }
+        function timer (){
+            t = setTimeout(add, 1000);
+        }
+        start.onclick = timer;
+        stop.onclick = function(){
+            clearTimeout(t);
+        }
+    </script>
+</body>
+</html>
